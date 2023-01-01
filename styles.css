@@ -1,0 +1,10 @@
+.cross_sign_area {
+  background-color: red;
+  padding: 5px;
+  color: white;
+  cursor: pointer;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
