@@ -12,9 +12,12 @@ function addRow() {
 
   const totalTableRowsUnderTBody = tbodyElem.getElementsByTagName("tr").length;
 
-  tableElem.insertRow(tableElem.rows.length);
+  // tableElem.insertRow(tableElem.rows.length);
 
   const rowElement = document.createElement("tr");
+
+  // rowElement.classList.add(`rowElement_${tableElem.rows.length}`);
+
   for (let i = 0; i < totalTableHeaderElements; i++) {
     if (i === 0) {
       rowElement.innerHTML += `<td><button class="editBtn row${totalTableRowsUnderTBody} col${i} btn btn-primary" id="editBtn_${totalTableRowsUnderTBody}">Save</button><button class="deleteBtn btn btn-danger ms-1">Delete</button>
@@ -36,9 +39,35 @@ function addColumn(e) {
 
   const numberOfColumnHeaders = theadElem.getElementsByTagName("th").length;
 
+  console.log("numberOfColumnHeaders =", numberOfColumnHeaders);
+
   theadElem.innerHTML += `<th scope="col" class="colN_${numberOfColumnHeaders} " onclick='delCol(${numberOfColumnHeaders})'><span>${columnName}</span> <a href="#" class="cross_sign_area">☓</a></th>`;
 
   document.getElementById("columnName").value = "";
+
+  const totalRows = tbodyElem.rows.length;
+
+  // should be -1
+  console.log("totalRows", totalRows);
+
+  // for (i = 0; i < totalRows; i++){
+  //   document
+  // }
+
+  console.log("tbodyElem", tbodyElem);
+
+  tbodyElem.querySelectorAll("tr").forEach((element, index) => {
+    console.log("element", element, "index", index);
+    const newCell = element.insertCell(-1);
+
+    newCell.setAttribute("id", `td_${index}${numberOfColumnHeaders}`);
+
+    newCell.classList.add(`colN_${numberOfColumnHeaders}`);
+
+    newCell.innerHTML = `<input type="text" />`;
+
+    // newCell.appendChild;
+  });
 }
 
 function onDeleteRow(e) {
